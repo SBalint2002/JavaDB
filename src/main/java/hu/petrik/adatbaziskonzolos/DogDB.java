@@ -33,4 +33,13 @@ public class DogDB {
         }
         return dogs;
     }
+
+    public void createDog(Dog dog) throws SQLException {
+        String sql = "INSERT INTO dogs(name, age, breed) VALUES (?, ?, ?)";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, dog.getName());
+        stmt.setInt(2, dog.getAge());
+        stmt.setString(3, dog.getBreed());
+        stmt.execute();
+    }
 }
